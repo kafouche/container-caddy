@@ -1,5 +1,12 @@
 # Caddy
 
+## Volumes
+
+| Parameter | Description              |
+|-----------|--------------------------|
+| `/config` | Configuration Directory. |
+| `/data`   | Data Directory.          |
+
 ## Build
 
 **Docker**
@@ -13,10 +20,3 @@ docker build -t kafouche/caddy:latest .
 ```
 podman build -t kafouche/caddy:latest .
 ```
-
-### Volumes
-
-| Parameter | Description              |
-|-----------|--------------------------|
-| `/config` | Configuration Directory. |
-| `/data`   | Data Directory.          |
