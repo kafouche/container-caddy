@@ -4,7 +4,7 @@
 LABEL       org.opencontainers.image.authors="kafouche"
 LABEL       org.opencontainers.image.base.name="ghcr.io/kafouche/caddy:latest"
 LABEL       org.opencontainers.image.ref.name="ghcr.io/kafouche/alpine"
-LABEL       org.opencontainers.image.source="https://github.com/kafouche/docker-caddy"
+LABEL       org.opencontainers.image.source="https://github.com/kafouche/container-caddy"
 LABEL       org.opencontainers.image.title="caddy"
 
 
