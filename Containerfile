@@ -1,19 +1,13 @@
-# Dockerfile: caddy
+# Containerfile: caddy
 # Kafouche Caddy Image.
 
-LABEL       org.opencontainers.image.authors="kafouche"
-LABEL       org.opencontainers.image.base.name="ghcr.io/kafouche/caddy:latest"
-LABEL       org.opencontainers.image.ref.name="ghcr.io/kafouche/alpine"
-LABEL       org.opencontainers.image.source="https://github.com/kafouche/container-caddy"
-LABEL       org.opencontainers.image.title="caddy"
-
-
-# ------------------------------------------------------------------------------
-
+ARG         RELEASE=2.10.0
 
 # BUILD STAGE
 
 FROM        ghcr.io/kafouche/alpine:latest as buildstage
+
+ARG         RELEASE
 
 RUN         apk --no-cache --update upgrade \
             && apk --no-cache --update add \
@@ -21,12 +15,26 @@ RUN         apk --no-cache --update upgrade \
 
 WORKDIR     /tmp
 
-RUN         xcaddy build --with github.com/caddy-dns/infomaniak
+RUN         xcaddy build "v$RELEASE" --with github.com/caddy-dns/infomaniak
 
 
 # RUN STAGE
 
 FROM        ghcr.io/kafouche/alpine:latest
+
+ARG         RELEASE
+
+LABEL       org.opencontainers.image.authors="kafouche"
+LABEL       org.opencontainers.image.base.name="ghcr.io/kafouche/caddy:$RELEASE"
+LABEL       org.opencontainers.image.ref.name="ghcr.io/kafouche/alpine"
+LABEL       org.opencontainers.image.source="https://github.com/kafouche/container-caddy"
+LABEL       org.opencontainers.image.title="caddy"
+LABEL       org.opencontainers.image.version="$RELEASE"
+LABEL       image.tags[0]="ghcr.io/kafouche/caddy:2.10"
+LABEL       image.tags[1]="ghcr.io/kafouche/caddy:2"
+LABEL       image.tags[2]="ghcr.io/kafouche/caddy:latest"
+
+# ------------------------------------------------------------------------------
 
 RUN         apk --no-cache --update upgrade
 
